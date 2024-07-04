@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/login_screen.dart';
+//import 'package:first_flutter_app/login_screen.dart';
 import 'package:first_flutter_app/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 173, 203, 158)
+        scaffoldBackgroundColor: Color.fromRGBO(224, 251, 226, 100)
       ),
       home: ScreenSplash()      
     );
