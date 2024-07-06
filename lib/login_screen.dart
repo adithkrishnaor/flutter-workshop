@@ -22,10 +22,9 @@ class LoginScreen extends StatelessWidget {
               const Text(
                 'Login Here',
                 style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 0, 0, 0)
-                  ),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0)),
               ),
               const SizedBox(
                 height: 20,
@@ -67,7 +66,9 @@ class LoginScreen extends StatelessWidget {
                       backgroundColor: Color.fromARGB(255, 60, 171, 231),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32),
-                      ))),
+                      )
+                  )
+              ),
             ],
           ),
         ),
@@ -79,8 +80,9 @@ class LoginScreen extends StatelessWidget {
     final _username = _usernameController.text;
     final _password = _passwordController.text;
 
-    if (_username == _password) {
-      // go to home
+    if(_username.isNotEmpty &&_password.isNotEmpty){
+      if (_username == _password) {
+      Navigator.pushNamed(ctx, '/about');
     } else {
       final _errormessage = "Username and Password doesn't match";
 
@@ -92,6 +94,16 @@ class LoginScreen extends StatelessWidget {
         content: Text(_errormessage),
         duration: Duration(seconds: 3),
       ));
+    }
+    }
+    else{
+      final _errormessage = "Username and Password can't be empty";
+      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(10),
+        content: Text(_errormessage),
+        duration: Duration(seconds: 3),
+        ));
     }
   }
 }
