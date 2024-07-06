@@ -1,4 +1,6 @@
 //import 'package:first_flutter_app/login_screen.dart';
+import 'package:first_flutter_app/about.dart';
+import 'package:first_flutter_app/login_screen.dart';
 import 'package:first_flutter_app/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Color.fromRGBO(224, 251, 226, 100)
       ),
-      home: ScreenSplash()      
+      home: ScreenSplash(),
+      routes: {
+        '/about': (ctx) => AboutScreen(),
+        '/login' : (ctx) => LoginScreen()
+      },
     );
   }
 }
