@@ -1,10 +1,14 @@
 //import 'package:first_flutter_app/login_screen.dart';
+import 'dart:async';
+
 import 'package:first_flutter_app/about.dart';
 import 'package:first_flutter_app/login_screen.dart';
 import 'package:first_flutter_app/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-void main() {
+Future<void> main() async{
+  
   runApp(MyApp());
 }
 
