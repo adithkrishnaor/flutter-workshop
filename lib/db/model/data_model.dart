@@ -5,10 +5,13 @@ part 'data_model.g.dart';
 class UserModel{
 
   @HiveField(0)
+  int? id;
+
+  @HiveField(1)
   final String username;
   
-  @HiveField(1)
+  @HiveField(2)
   final String password;
 
-  UserModel({required this.username,required this.password});
+  UserModel({required this.username,required this.password,this.id});
 }
