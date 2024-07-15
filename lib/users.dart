@@ -1,12 +1,26 @@
+// users_screen.dart
 import 'package:first_flutter_app/db/functions/db_functions.dart';
+import 'package:first_flutter_app/db/model/data_model.dart';
+import 'package:first_flutter_app/list_user_widget.dart';
 import 'package:flutter/material.dart';
 
-class UsersScreen extends StatelessWidget {
+class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
 
   @override
-  Widget build(BuildContext ctx) {
+  _UsersScreenState createState() => _UsersScreenState();
+}
+
+class _UsersScreenState extends State<UsersScreen> {
+  @override
+  void initState() {
+    super.initState();
+    initDataBase();
     getAllUsers();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(172, 225, 175, 100),
@@ -16,13 +30,12 @@ class UsersScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          
-            const Text(
-              'Users',
-              style: TextStyle(
-                fontSize: 30,
-                color: Color.fromARGB(255, 51, 247, 100),
-                fontWeight: FontWeight.bold,
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: userListNotifier,
+                builder: (context, value, child) {
+                  return ListUserWidget(users: value);
+                },
               ),
             ),
             const SizedBox(
@@ -30,7 +43,7 @@ class UsersScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(ctx, '/login');
+                Navigator.pushNamed(context, '/login');
               },
               child: const Text('Go to Login'),
               style: ElevatedButton.styleFrom(
@@ -45,7 +58,7 @@ class UsersScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(ctx, '/about');
+                Navigator.pushNamed(context, '/about');
               },
               child: const Text('About'),
               style: ElevatedButton.styleFrom(

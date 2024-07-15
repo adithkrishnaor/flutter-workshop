@@ -76,19 +76,20 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void checkLogin(BuildContext ctx) {
+  void checkLogin(BuildContext context) {
     final _username = _usernameController.text;
     final _password = _passwordController.text;
 
     if(_username.isNotEmpty &&_password.isNotEmpty){
       if (_username == _password) {
-      Navigator.pushNamed(ctx, '/about');
+      Navigator.pushNamed(context, '/about');
+      print('$_username $_password');
     } else {
       final _errormessage = "Username and Password doesn't match";
 
       //can use 3 types of messages : SnackBar, Alert Dilaogue , Simple Text
 
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.all(10),
         content: Text(_errormessage),
@@ -98,7 +99,7 @@ class LoginScreen extends StatelessWidget {
     }
     else{
       final _errormessage = "Username and Password can't be empty";
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.all(10),
         content: Text(_errormessage),
