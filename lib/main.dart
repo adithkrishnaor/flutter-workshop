@@ -2,20 +2,16 @@
 import 'dart:async';
 
 import 'package:first_flutter_app/about.dart';
+import 'package:first_flutter_app/db/functions/db_functions.dart';
 import 'package:first_flutter_app/db/model/data_model.dart';
 import 'package:first_flutter_app/login_screen.dart';
 import 'package:first_flutter_app/splash.dart';
 import 'package:first_flutter_app/users.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  if(!Hive.isAdapterRegistered(UserModelAdapter().typeId))
-  {
-    Hive.registerAdapter(UserModelAdapter());
-  }
+  await initDataBase();
   runApp(MyApp());
 }
 
@@ -30,9 +26,9 @@ class MyApp extends StatelessWidget {
       ),
       home: ScreenSplash(),
       routes: {
-        '/about': (ctx) => AboutScreen(),
-        '/login' : (ctx) => LoginScreen(),
-        '/users' : (ctx) => UsersScreen()
+        '/about': (context) => AboutScreen(),
+        '/login' : (context) => LoginScreen(),
+        '/users' : (context) => UsersScreen()
       },
     );
   }

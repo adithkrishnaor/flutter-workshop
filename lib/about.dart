@@ -4,7 +4,7 @@ class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(172, 225, 175, 100),
@@ -27,7 +27,7 @@ class AboutScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(ctx, '/login');
+                Navigator.pushNamed(context, '/login');
               },
               child: const Text('Go to Login'),
               style: ElevatedButton.styleFrom(
@@ -42,7 +42,7 @@ class AboutScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(ctx, '/users');
+                Navigator.pushNamed(context, '/users');
               },
               child: const Text('Users'),
               style: ElevatedButton.styleFrom(
