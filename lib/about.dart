@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -23,7 +22,7 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 150,
+              height: 100,
             ),
             ElevatedButton(
               onPressed: () {
