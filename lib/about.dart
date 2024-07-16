@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 150,
+              height: 100,
             ),
             ElevatedButton(
               onPressed: () {
@@ -52,9 +52,56 @@ class AboutScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(32),
                   )),
             ),
+            const SizedBox(
+              height: 50,
+            ),
+            callButton(),
+            const SizedBox(
+              height: 50,
+            ),
+            urlButton(),
           ],
         ),
       ),
     );
   }
 }
+
+  Widget callButton() {
+    final number = '+91 9876543210';
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Color.fromARGB(255, 70, 189, 149),
+        padding: EdgeInsets.symmetric(horizontal: 48, vertical: 12),
+        textStyle: TextStyle(
+          fontSize: 15,
+        ),
+        
+      ),
+      child: Text('Call'),
+      onPressed: () async {
+        launch('tel://$number');
+        //launchUrl('tel://$number' as Uri);
+      },
+    );
+  }
+
+  Widget urlButton() {
+    final url = 'https://flutter.dev/';
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Color.fromARGB(255, 70, 189, 149),
+        padding: EdgeInsets.symmetric(horizontal: 48, vertical: 12),
+        textStyle: TextStyle(
+          fontSize: 15,
+        ),
+        
+      ),
+      child: Text('Go to Site'),
+      onPressed: () async {
+        launch(url);
+      },
+    );
+  }
