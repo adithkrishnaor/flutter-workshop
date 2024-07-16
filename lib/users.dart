@@ -105,7 +105,7 @@ class _UsersScreenState extends State<UsersScreen> {
               ),
 
               Row(children: [
-                 const SizedBox(width: 50),
+                 const SizedBox(width: 80),
                 TextButton(
                   style: ButtonStyle(
                     shape: WidgetStatePropertyAll(
@@ -121,7 +121,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     deleteAllUsers();
                   },
                   child: const Text(
-                    'Clear Table',
+                    'Clear',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
