@@ -1,44 +1,53 @@
-
-import 'package:first_flutter_app/db/model/data_model.dart';
-import 'package:flutter/material.dart';
+//import 'package:first_flutter_app/db/model/data_model.dart';
+//import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
-ValueNotifier<List<UserModel>> userListNotifier = ValueNotifier([]);
+//ValueNotifier<List<UserModel>> userListNotifier = ValueNotifier([]);
 
 late Database _db;
 
-Future<void> initDataBase() async{
+Future<void> initDataBase() async {
   _db = await openDatabase(
-    'user.db',
+    "usersdet",
     version: 1,
-    onCreate: (Database db,int version) async{
-    await db.execute(
-      'CREATE TABLE user (id INTEGER PRIMARY KEY,username TEXT,password TEXT)');
-  },);
+    onCreate: (Database db, int version) async {
+      await db.execute(
+          'CREATE TABLE userdb(id INTEGER PRIMARY KEY,username TEXT,password TEXT)'
+      );
+    },
+  );
+  debugPrint('DB CREATED');
 }
 
-Future<void> addUser(UserModel value) async {
+Future<int> addUser(String username, String password) async {
   // final userDB = await Hive.openBox<UserModel>('user_db');
   // final _id = await userDB.add(value);
   // value.id=_id;
-  await _db.rawInsert(
-    'INSERT INTO user(username,password) VALUES(?,?)',[value.username, value.password]);
-  getAllUsers();
-  // userListNotifier.value.add(value);
+  final adduser = await _db.rawInsert(
+      'INSERT INTO userdb(username,password) VALUES(?,?)',
+      [username, password]);
+  return adduser; // userListNotifier.value.add(value);
   // userListNotifier.notifyListeners();
 }
 
-Future<void> getAllUsers() async{
+Future<List> getAllUsers() async {
   // final userDB = await Hive.openBox<UserModel>('user_db');
-  userListNotifier.value.clear();
-  final _values = await _db.rawQuery('SELECT * FROM user');
-  print(_values);
+  //userListNotifier.value.clear();
+  final _usrdetails = await _db.rawQuery('SELECT * FROM userdb');
+  print(_usrdetails);
   // userListNotifier.value.addAll(userDB.values);
-  userListNotifier.notifyListeners();
+  //userListNotifier.notifyListeners();
+  return _usrdetails;
 }
 
-Future<void> deleteUser(int id) async {
-  // final userDB = await Hive.openBox<UserModel>('user_db');
-  // await userDB.delete(id);
-  getAllUsers();
+Future<void> deleteUser() async {
+  await _db.delete('userdb');
+  await _db.close();
+  final dbpath = await getDatabasesPath();
+   final dbPaths = join(dbpath,'userdb.db');
+   await deleteDatabase(dbPaths);
+  //getAllUsers();
 }
+
