@@ -81,6 +81,7 @@ class AboutScreen extends StatelessWidget {
       ),
       child: Text('Call'),
       onPressed: () async {
+        // ignore: deprecated_member_use
         launch('tel://$number');
         //launchUrl('tel://$number' as Uri);
       },
