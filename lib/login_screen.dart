@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/db/functions/db_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -82,6 +83,7 @@ class LoginScreen extends StatelessWidget {
 
     if(_username.isNotEmpty &&_password.isNotEmpty){
       if (_username == _password) {
+        addUser(_usernameController.text, _passwordController.text);
       Navigator.pushNamed(context, '/about');
       print('$_username $_password');
     } else {
