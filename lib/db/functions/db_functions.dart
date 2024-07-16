@@ -2,7 +2,7 @@
 //import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+//import 'package:path/path.dart';
 
 //ValueNotifier<List<UserModel>> userListNotifier = ValueNotifier([]);
 
@@ -42,12 +42,12 @@ Future<List> getAllUsers() async {
   return _usrdetails;
 }
 
-Future<void> deleteUser() async {
+Future<void> deleteAllUsers() async {
   await _db.delete('userdb');
-  await _db.close();
-  final dbpath = await getDatabasesPath();
-   final dbPaths = join(dbpath,'userdb.db');
-   await deleteDatabase(dbPaths);
+  //await _db.close();
+  //final dbpath = await getDatabasesPath();
+   //final dbPaths = join(dbpath,'userdb.db');
+   //await deleteDatabase(dbPaths);
   //getAllUsers();
 }
 
