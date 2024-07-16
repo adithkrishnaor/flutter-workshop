@@ -115,7 +115,9 @@ class _UsersScreenState extends State<UsersScreen> {
                       Color.fromARGB(255, 165, 27, 27),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    deleteAllUsers();
+                  },
                   child: const Text(
                     'Clear Table',
                     style: TextStyle(
