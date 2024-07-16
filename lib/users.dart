@@ -105,11 +105,13 @@ class _UsersScreenState extends State<UsersScreen> {
               ),
 
               Row(children: [
-                 const SizedBox(width: 50),
+                 const SizedBox(width: 80),
                 TextButton(
-                  style: const ButtonStyle(
+                  style: ButtonStyle(
                     shape: WidgetStatePropertyAll(
-                      RoundedRectangleBorder(),
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
                     ),
                     backgroundColor: WidgetStatePropertyAll(
                       Color.fromARGB(255, 165, 27, 27),
@@ -119,7 +121,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     deleteAllUsers();
                   },
                   child: const Text(
-                    'Clear Table',
+                    'Clear',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -129,15 +131,19 @@ class _UsersScreenState extends State<UsersScreen> {
                 ),
                 const SizedBox(width: 50),
                 TextButton(
-                  style: const ButtonStyle(
+                  style: ButtonStyle(
                     shape: WidgetStatePropertyAll(
-                      RoundedRectangleBorder(),
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
                     ),
                     backgroundColor: WidgetStatePropertyAll(
                       Color.fromARGB(255, 78, 153, 27),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: (){
+                    refreshUser();
+                  },
                   child: const Text(
                     'Refresh',
                     style: TextStyle(
@@ -166,4 +172,8 @@ class _UsersScreenState extends State<UsersScreen> {
       ),
     );
   }
+  void refreshUser() async {
+  userdata = await getAllUsers();
+  setState(() {});
+}
 }
